@@ -1,0 +1,11 @@
+{
+  "name": "@project/presentation",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "dependencies": {
+    "@project/infrastructure": "1.0.0",
+    "@project/application": "1.0.0",
+    "@project/domain": "1.0.0"
+  }
+}
+
