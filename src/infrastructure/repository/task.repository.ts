@@ -1,10 +1,11 @@
+import { PrismaClient } from '@prisma/client';
+import { BaseRepository } from './core/base.repository.impl';
+import { TaskModel } from '../model/task.model';
 import { Injectable } from '@nestjs/common';
-import { PrismaClient, Task } from '@prisma/client';
-import { BaseRepository } from './base.repository.impl';
 
 @Injectable()
-export class TaskRepository extends BaseRepository<Task> {
+export class TaskRepository extends BaseRepository<TaskModel> {
   constructor(prisma: PrismaClient) {
-    super(prisma, prisma.task);
+    super(prisma.task);
   }
 }

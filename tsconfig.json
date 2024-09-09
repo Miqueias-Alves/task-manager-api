@@ -16,6 +16,12 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@project/domain/*": ["src/domain/*"],
+      "@project/application/*": ["src/application/*"],
+      "@project/infrastructure/*": ["src/infrastructure/*"],
+      "@project/presentation/*": ["src/presentation/*"],
+    }
   }
 }
