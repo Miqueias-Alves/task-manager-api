@@ -13,8 +13,6 @@ export class FindByIdTaskUseCase
 
   async execute(id: number): Promise<FindDto | null> {
     const task = await this.taskGateway.findById(id);
-
-    console.log(task)
     if (!task) {
       return null;
     }

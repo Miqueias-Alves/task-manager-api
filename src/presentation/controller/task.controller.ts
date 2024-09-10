@@ -5,7 +5,8 @@ import {
   Post,
   Delete,
   Param,
-  ParseIntPipe, BadRequestException,
+  ParseIntPipe,
+  BadRequestException,
 } from '@nestjs/common';
 import { CreateTaskUseCase } from '@project/application/task/create/create-task.use-case';
 import { TaskDto } from '@project/application/task/create/task.dto';
@@ -38,8 +39,17 @@ export class TaskController {
     const task = await this.findByIdTaskUseCase.execute(id);
 
     if (!task) {
-      throw new BadRequestException('Não existe tarefa com esse id.')
+      throw new BadRequestException('Não existe tarefa com esse id.');
     }
     return await this.deleteTaskUseCase.execute(id);
+  }
+
+  @Get(':id')
+  async getTaskById(@Param('id', ParseIntPipe) id: number): Promise<FindDto> {
+    const task = await this.findByIdTaskUseCase.execute(id);
+    if (!task) {
+      throw new BadRequestException('Não existe tarefa com esse id.');
+    }
+    return task;
   }
 }
