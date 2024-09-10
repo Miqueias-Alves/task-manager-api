@@ -2,7 +2,6 @@ import { UseCase } from '../../core/use-case.core';
 import { TaskDto } from './task.dto';
 import { TaskGateway } from '@project/domain/entity/task/task.gateway';
 import { TaskEntity } from '@project/domain/entity/task/task.entity';
-import { Either } from '../../core/either.core';
 import { Inject, Injectable } from '@nestjs/common';
 
 @Injectable()

@@ -8,25 +8,35 @@ export class TaskModel {
   createdAt?: Date;
   updatedAt?: Date;
 
-  constructor(
-    title: string,
-    description: string,
-    dueDate: Date,
-  ) {
+  constructor(title: string, description: string, dueDate: Date) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
   }
 
   static fromCreate(
-    title: string, description: string,  dueDate: Date,
+    title: string,
+    description: string,
+    dueDate: Date,
   ): TaskModel {
-    return new TaskModel(title, description, dueDate)
+    return new TaskModel(title, description, dueDate);
   }
 
   static toAggregate(
-    title: string, description: string,  dueDate: Date,
+    title: string,
+    description: string,
+    dueDate: Date,
   ): TaskEntity {
     return new TaskEntity(title, description, dueDate);
+  }
+
+  static toAggregateList(taskModels: TaskModel[]): TaskEntity[] {
+    return taskModels.map((taskModel) =>
+      TaskModel.toAggregate(
+        taskModel.title,
+        taskModel.description,
+        taskModel.dueDate,
+      ),
+    );
   }
 }
