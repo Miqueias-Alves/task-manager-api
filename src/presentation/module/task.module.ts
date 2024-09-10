@@ -4,10 +4,12 @@ import { CreateTaskUseCase } from '@project/application/task/create/create-task.
 import { TaskService } from '@project/infrastructure/service/task.service';
 import { TaskRepository } from '@project/infrastructure/repository/task.repository';
 import { PrismaClient } from '@prisma/client';
+import { FindTaskUseCase } from '@project/application/task/find/find-task.use-case';
 
 @Module({
   providers: [
     CreateTaskUseCase,
+    FindTaskUseCase,
     {
       provide: 'TaskGateway',
       useClass: TaskService,

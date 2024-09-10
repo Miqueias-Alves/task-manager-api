@@ -27,7 +27,14 @@ export class TaskService implements TaskGateway {
   }
 
   async findAll(): Promise<TaskEntity[]> {
-    throw new Error('Method not implemented.');
+    try {
+      const result = await this.taskRepository.findALl();
+      return result.map((task) =>
+        TaskModel.toAggregate(task.title, task.description, task.dueDate),
+      );
+    } catch (error) {
+      throw error;
+    }
   }
 
   async findById(id: number): Promise<TaskEntity | null> {
