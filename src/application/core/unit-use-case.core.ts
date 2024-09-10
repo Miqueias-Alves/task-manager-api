@@ -1,3 +1,3 @@
-export interface UnitUseCaseCore<IN> {
-  execute(data: IN): void
+export interface UnitUseCase<OUT> {
+  execute(): OUT;
 }

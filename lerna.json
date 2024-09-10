@@ -4,6 +4,5 @@
   "packages": [
     "src/*"
   ],
-  "npmClient": "npm",
-  "useWorkspaces": true
+  "npmClient": "npm"
 }

@@ -1,3 +1,3 @@
-export interface NullableUseCaseCore {
-  execute(): void;
+export interface NullableUseCase<IN> {
+  execute(data: IN): void;
 }
