@@ -30,4 +30,4 @@ Este projeto é uma API de gerenciamento de tarefas desenvolvida com NestJS, seg
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   git clone https://github.com/Miqueias-Alves/task-manager-api.git

@@ -38,7 +38,16 @@ export class TaskService implements TaskGateway {
   }
 
   async findById(id: number): Promise<TaskEntity | null> {
-    throw new Error('Method not implemented.');
+    const result = await this.taskRepository.findById(id);
+    if (!result) {
+      return null;
+    }
+
+    return TaskModel.toAggregate(
+      result.title,
+      result.description,
+      result.dueDate
+    )
   }
 
   async update(id: number): Promise<TaskEntity> {
@@ -46,6 +55,10 @@ export class TaskService implements TaskGateway {
   }
 
   async delete(id: number): Promise<void> {
-    throw new Error('Method not implemented.');
+    try {
+      return await this.taskRepository.delete(id);
+    } catch (error) {
+      throw error;
+    }
   }
 }

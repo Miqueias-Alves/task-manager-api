@@ -5,11 +5,15 @@ import { TaskService } from '@project/infrastructure/service/task.service';
 import { TaskRepository } from '@project/infrastructure/repository/task.repository';
 import { PrismaClient } from '@prisma/client';
 import { FindTaskUseCase } from '@project/application/task/find/find-task.use-case';
+import { DeleteTaskUseCase } from '@project/application/task/delete/delete-task.use-case';
+import { FindByIdTaskUseCase } from '@project/application/task/findById/find-by-id-task.use-case';
 
 @Module({
   providers: [
     CreateTaskUseCase,
     FindTaskUseCase,
+    DeleteTaskUseCase,
+    FindByIdTaskUseCase,
     {
       provide: 'TaskGateway',
       useClass: TaskService,

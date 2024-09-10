@@ -12,7 +12,6 @@ export class FindTaskUseCase implements UnitUseCase<Promise<FindDto[]>> {
   async execute(): Promise<FindDto[]> {
     const result = await this.taskGateway.findAll();
 
-    console.log(result);
     return result.map((item) => {
       return FindDto.from(item)
     });
