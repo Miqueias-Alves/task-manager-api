@@ -23,11 +23,33 @@ Este projeto é uma API de gerenciamento de tarefas desenvolvida com NestJS, seg
 ## Tecnologias Utilizadas
 - **NestJS**: Framework para construir a API.
 - **TypeScript**: Linguagem de programação utilizada.
-- **PostgreSQL/MongoDB**: Banco de dados para persistência de dados.
-- **Jest**: Framework de testes para garantir a qualidade do código.
+- **MySQL**: Banco de dados para persistência de dados.
 
 ## Instalação
 
 1. Clone o repositório:
    ```bash
    git clone https://github.com/Miqueias-Alves/task-manager-api.git
+   ```
+   2. Instale as dependências:
+   ```bash
+   npm install
+   ```
+   3. Crie um arquivo `.env` na raiz do projeto e configure as variáveis de ambiente:
+   ```
+   PORT=3000
+   DB_HOST=localhost
+   DB_PORT=3306
+   DB_USER=root
+   DB_PASSWORD=root
+   DB_NAME=task_manager
+   ```
+   4. Execute as migrations para criar as tabelas no banco de dados:
+   ```bash
+   npm run typeorm migration:run
+   ```
+   5. Inicie a aplicação:
+   ```bash
+   npm run start:dev
+   ```
+   6. Acesse a API em `http://localhost:3000/docs` para visualizar a documentação da API.
