@@ -10,17 +10,9 @@ export class TaskService implements TaskGateway {
 
   async create(entity: TaskEntity): Promise<TaskEntity> {
     try {
-      const task = TaskModel.fromCreate(
-        entity.title,
-        entity.description,
-        entity.dueDate,
-      );
+      const task = TaskModel.fromCreate(entity);
       const result = await this.taskRepository.create(task);
-      return TaskModel.toAggregate(
-        result.title,
-        result.description,
-        result.dueDate,
-      );
+      return await TaskModel.toAggregate(result);
     } catch (error) {
       throw error;
     }
@@ -29,9 +21,7 @@ export class TaskService implements TaskGateway {
   async findAll(): Promise<TaskEntity[]> {
     try {
       const result = await this.taskRepository.findALl();
-      return result.map((task) =>
-        TaskModel.toAggregate(task.title, task.description, task.dueDate),
-      );
+      return TaskModel.toAggregateList(result);
     } catch (error) {
       throw error;
     }
@@ -43,15 +33,17 @@ export class TaskService implements TaskGateway {
       return null;
     }
 
-    return TaskModel.toAggregate(
-      result.title,
-      result.description,
-      result.dueDate
-    )
+    return TaskModel.toAggregate(result);
   }
 
-  async update(id: number): Promise<TaskEntity> {
-    throw new Error('Method not implemented.');
+  async update(entity: TaskEntity): Promise<TaskEntity> {
+    try {
+      const task = TaskModel.fromUpdate(entity);
+      const result = await this.taskRepository.update(entity.getId(), task);
+      return await TaskModel.toAggregate(result);
+    } catch (error) {
+      throw error;
+    }
   }
 
   async delete(id: number): Promise<void> {
