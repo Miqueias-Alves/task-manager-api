@@ -7,6 +7,7 @@ import {
   Param,
   ParseIntPipe,
   BadRequestException,
+  Put,
 } from '@nestjs/common';
 import { CreateTaskUseCase } from '@project/application/task/create/create-task.use-case';
 import { TaskDto } from '@project/application/task/create/task.dto';
@@ -29,24 +30,34 @@ export class TaskController {
     return await this.createTaskUseCase.execute(taskDto);
   }
 
+  @Put()
+  async updateTask(@Body() taskDto: TaskDto): Promise<TaskDto> {
+    return await this.createTaskUseCase.execute(taskDto);
+  }
+
   @Get()
   async getTasks(): Promise<FindDto[]> {
     return await this.findTaskUseCase.execute();
   }
 
   @Delete(':id')
-  async deleteTask(@Param('id', ParseIntPipe) id: number): Promise<void> {
+  async deleteTask(@Param('id', ParseIntPipe) id: number): Promise<any> {
     const task = await this.findByIdTaskUseCase.execute(id);
 
     if (!task) {
       throw new BadRequestException('Não existe tarefa com esse id.');
     }
-    return await this.deleteTaskUseCase.execute(id);
+    await this.deleteTaskUseCase.execute(id);
+
+    return {
+      message: 'Tarefa deletada com sucesso.',
+    };
   }
 
   @Get(':id')
   async getTaskById(@Param('id', ParseIntPipe) id: number): Promise<FindDto> {
     const task = await this.findByIdTaskUseCase.execute(id);
+
     if (!task) {
       throw new BadRequestException('Não existe tarefa com esse id.');
     }

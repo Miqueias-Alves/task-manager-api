@@ -16,6 +16,8 @@ export class CreateTaskUseCase implements UseCase<TaskDto, Promise<TaskDto>> {
       data.description,
       data.dueDate,
     );
-    return await this.taskGateway.create(task);
+
+    const response = await this.taskGateway.create(task);
+    return TaskDto.from(response);
   }
 }
