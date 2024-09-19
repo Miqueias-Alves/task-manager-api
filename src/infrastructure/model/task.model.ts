@@ -1,4 +1,4 @@
-import { TaskEntity } from '../../domain/entity/task/task.entity';
+import { TaskEntity } from '@project/domain/entity/task/task.entity';
 
 export class TaskModel {
   private id?: number;
